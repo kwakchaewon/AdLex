@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-4-6",
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Bash(git *)",
+      "Bash(cd *)",
+      "Bash(*gradlew*)",
+      "Bash(docker *)",
+      "Bash(npm *)"
+    ]
+  }
+}
