@@ -71,7 +71,7 @@ AdLex — 마케팅/광고 메시지(SMS/카카오/이메일) 법규 준수 자�
 | adlex-docs/plan.md | 진행 현황 |
 | adlex-docs/tasks/{backend,frontend,infra}/*.md | 태스크 |
 | adlex-docs/decisions/*.md | ADR |
-| .claude/skills/*.md | Skills 7개 |
+| .claude/skills/{skill-name}/SKILL.md | Skills 7개 |
 | .claude/settings.json | 모델 설정 (Sonnet) |
  
 ## 파일 경로 자동 계산
