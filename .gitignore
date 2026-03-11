@@ -1,0 +1,12 @@
+﻿adlex-api/build/
+adlex-api/.gradle/
+adlex-dashboard/node_modules/
+adlex-dashboard/dist/
+adlex-infra/terraform/.terraform/
+adlex-infra/terraform/*.tfstate*
+.idea/
+.vscode/
+.env
+.env.local
+*.log
+.DS_Store
