@@ -8,7 +8,7 @@
 ---
  
 ## Phase 1: 프로토타입 (4주)
-- [ ] 1.1 프로젝트 셋업 @backend
+- [x] 1.1 프로젝트 셋업 @backend
 - [ ] 1.2 DB 스키마 + Flyway @backend
 - [ ] 1.3 규칙 엔진 @backend
 - [ ] 1.4 POST /v1/check @backend
