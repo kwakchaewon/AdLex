@@ -2,8 +2,8 @@
 > AI-powered API for checking marketing and advertising compliance
 
 ## 진행 요약
-- 전체: 26/71 (36%)
-- 현재: Phase 3 진행중 (3/16)
+- 전체: 27/71 (38%)
+- 현재: Phase 3 진행중 (4/16)
 
 ---
 
@@ -44,7 +44,7 @@
 - [x] 3.1 pgvector 마이그레이션 + 법령 청크 테이블 `backend/014` ← 1.2
 - [x] 3.2 법령 시드 데이터 50개 + 임베딩 파이프라인 `backend/15` ← 3.1
 - [x] 3.3 판례 시드 데이터 + 임베딩 파이프라인 `backend/016` ← 3.1
-- [ ] 3.4 RAG 검색 서비스 (EmbeddingService + VectorSearchService) `backend/017` ← 3.1
+- [x] 3.4 RAG 검색 서비스 (EmbeddingService + VectorSearchService) `backend/017` ← 3.1
 
 ### 3-B: LLM Layer 2
 - [ ] 3.5 Claude API 클라이언트 (ClaudeApiClient) `backend/018` ← 3.4

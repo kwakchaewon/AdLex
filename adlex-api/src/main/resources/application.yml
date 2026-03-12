@@ -38,6 +38,10 @@ springdoc:
 adlex:
   jwt:
     secret: ${ADLEX_JWT_SECRET:adlex-local-dev-secret-key-minimum-256-bits-long-padding}
+  rag:
+    law-chunks-top-k: 3       # 유사 법령 조문 검색 수
+    precedents-top-k: 2       # 유사 판례 검색 수
+    cache-ttl-minutes: 60     # 임베딩 캐시 TTL (분)
 
 portone:
   api-key: ${PORTONE_API_KEY:}
