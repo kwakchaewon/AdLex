@@ -1,8 +1,6 @@
 package com.adlex.api.controller
 
-import com.adlex.api.dto.CheckRequest
-import com.adlex.api.dto.CheckResponse
-import com.adlex.api.dto.ViolationDto
+import com.adlex.api.dto.*
 import com.adlex.domain.service.ComplianceCheckService
 import com.adlex.engine.model.EvaluationContext
 import com.adlex.engine.model.SenderInfo
@@ -29,9 +27,35 @@ class CheckController(
         ApiResponse(responseCode = "401", description = "인증 실패"),
         ApiResponse(responseCode = "429", description = "Rate limit 초과")
     )
-    fun check(@RequestBody @Valid request: CheckRequest): CheckResponse {
+    fun check(@RequestBody @Valid request: CheckRequest): CheckResponse =
+        check(request, resolveTenantId())
+
+    @PostMapping("/check/batch")
+    @Operation(summary = "메시지 일괄 법규 검사 (최대 100건)")
+    @ApiResponses(
+        ApiResponse(responseCode = "200", description = "일괄 검사 완료"),
+        ApiResponse(responseCode = "400", description = "Validation 실패"),
+        ApiResponse(responseCode = "401", description = "인증 실패")
+    )
+    fun batchCheck(@RequestBody @Valid request: BatchCheckRequest): BatchCheckResponse {
+        val startMs = System.currentTimeMillis()
         val tenantId = resolveTenantId()
 
+        val results = request.messages.map { check(it, tenantId) }
+        val compliantCount = results.count { it.compliant }
+
+        return BatchCheckResponse(
+            results = results,
+            summary = BatchSummary(
+                total = results.size,
+                compliant = compliantCount,
+                violated = results.size - compliantCount,
+                processingMs = System.currentTimeMillis() - startMs
+            )
+        )
+    }
+
+    private fun check(request: CheckRequest, tenantId: Long): CheckResponse {
         val context = EvaluationContext(
             message = request.message,
             channel = request.channel,
@@ -41,20 +65,13 @@ class CheckController(
             scheduledAt = request.scheduledAt,
             options = buildOptions(request)
         )
-
         val result = complianceCheckService.check(tenantId, context)
-
         return CheckResponse(
             compliant = result.compliant,
             violationCount = result.violations.size,
             violations = result.violations.map {
-                ViolationDto(
-                    ruleCode = it.ruleCode,
-                    severity = it.severity,
-                    message = it.message,
-                    legalBasis = it.legalBasis,
-                    suggestion = it.suggestion
-                )
+                ViolationDto(ruleCode = it.ruleCode, severity = it.severity, message = it.message,
+                    legalBasis = it.legalBasis, suggestion = it.suggestion)
             },
             checkedAt = result.checkedAt,
             processingMs = result.processingMs
