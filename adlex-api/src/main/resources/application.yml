@@ -43,6 +43,11 @@ portone:
   api-key: ${PORTONE_API_KEY:}
   api-secret: ${PORTONE_API_SECRET:}
 
+openai:
+  api-key: ${OPENAI_API_KEY:}
+  embedding:
+    model: text-embedding-3-small
+
 management:
   endpoints:
     web:
