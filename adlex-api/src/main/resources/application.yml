@@ -52,6 +52,11 @@ openai:
   embedding:
     model: text-embedding-3-small
 
+claude:
+  api-key: ${CLAUDE_API_KEY:}
+  model: claude-opus-4-6
+  max-tokens: 1024
+
 management:
   endpoints:
     web:

@@ -2,8 +2,8 @@
 > AI-powered API for checking marketing and advertising compliance
 
 ## 진행 요약
-- 전체: 27/71 (38%)
-- 현재: Phase 3 진행중 (4/16)
+- 전체: 28/71 (39%)
+- 현재: Phase 3 진행중 (5/16)
 
 ---
 
@@ -47,7 +47,7 @@
 - [x] 3.4 RAG 검색 서비스 (EmbeddingService + VectorSearchService) `backend/017` ← 3.1
 
 ### 3-B: LLM Layer 2
-- [ ] 3.5 Claude API 클라이언트 (ClaudeApiClient) `backend/018` ← 3.4
+- [x] 3.5 Claude API 클라이언트 (ClaudeApiClient) `backend/018` ← 3.4
 - [ ] 3.6 LLM Layer 2 보조 분석기 (RAG 컨텍스트 주입) `backend/019` ← 3.5,3.4
 - [ ] 3.7 수정 제안 API `backend/020` ← 3.6
 - [ ] 3.8 Layer 2 플랜별 제어 (PRO 이상만 호출) `backend/021` ← 3.6
