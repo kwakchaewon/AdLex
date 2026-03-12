@@ -2,14 +2,14 @@
 > AI-powered API for checking marketing and advertising compliance
 
 ## 진행 요약
-- 전체: 1/44 (2%)
-- 현재: Phase 1 진행중 (1/7)
+- 전체: 2/44 (4%)
+- 현재: Phase 1 진행중 (2/7)
 
 ---
 
 ## Phase 1: 프로토타입 (4주)
 - [x] 1.1 프로젝트 셋업 `backend/001`
-- [ ] 1.2 DB 스키마 + Flyway `backend/002`
+- [x] 1.2 DB 스키마 + Flyway `backend/002`
 - [ ] 1.3 규칙 엔진 `backend/003` ← 1.2
 - [ ] 1.4 POST /v1/check `backend/004` ← 1.3
 - [ ] 1.5 Batch + Rules API `backend/005` ← 1.4
