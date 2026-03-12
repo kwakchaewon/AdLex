@@ -134,7 +134,66 @@
 
     </div>
 
-    <!-- Coming soon tabs -->
+    <!-- 계정 tab -->
+    <div v-else-if="activeTab === 'account'" class="tab-content fade-in">
+
+      <!-- Profile success -->
+      <div v-if="profileSuccess" class="success-banner">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        프로필이 저장되었습니다.
+        <button class="error-close" @click="profileSuccess = false" type="button">×</button>
+      </div>
+      <div v-if="profileError" class="error-banner">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        {{ profileError }}
+        <button class="error-close" @click="profileError = ''" type="button">×</button>
+      </div>
+
+      <!-- Profile card -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">프로필</h2>
+        </div>
+        <div v-if="profileLoading && !profile" class="skeleton-wrap">
+          <div class="skel w60" /><div class="skel w40" />
+        </div>
+        <form v-else @submit.prevent="saveProfile" class="profile-form">
+          <div class="form-row">
+            <label class="form-label">이메일</label>
+            <input class="field-input" :value="profile?.email" disabled />
+            <span class="form-hint">이메일은 변경할 수 없습니다</span>
+          </div>
+          <div class="form-row">
+            <label class="form-label">회사명</label>
+            <input v-model="companyNameInput" class="field-input" placeholder="회사명 (선택사항)" maxlength="100" />
+          </div>
+          <div class="form-row">
+            <label class="form-label">가입일</label>
+            <input class="field-input" :value="profile ? fmtDate(profile.createdAt) : ''" disabled />
+          </div>
+          <div class="form-actions">
+            <button class="btn-save" :disabled="profileLoading" type="submit">
+              <span v-if="profileLoading" class="spinner-sm" />
+              {{ profileLoading ? '저장 중...' : '저장' }}
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Password card -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">비밀번호 변경</h2>
+        </div>
+        <div class="coming-inline">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>비밀번호 변경 기능은 곧 제공될 예정입니다.</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Coming soon tabs (보안) -->
     <div v-else class="tab-content fade-in coming-soon">
       <div class="coming-icon">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -150,8 +209,42 @@
 import { ref, computed, onMounted } from 'vue'
 import { usePayment, PLAN_INFO } from '@/composables/usePayment'
 import type { Plan, SubscriptionStatus } from '@/api/billing'
+import { getMe, updateMe, type MeResponse } from '@/api/user'
 
 const { status, loading, error, loadStatus, startPayment, cancel } = usePayment()
+
+// ── 계정 탭 state ──
+const profile        = ref<MeResponse | null>(null)
+const companyNameInput = ref('')
+const profileLoading = ref(false)
+const profileError   = ref('')
+const profileSuccess = ref(false)
+
+async function loadProfile() {
+  profileLoading.value = true
+  try {
+    profile.value = await getMe()
+    companyNameInput.value = profile.value.companyName ?? ''
+  } catch {
+    profileError.value = '프로필을 불러오지 못했습니다.'
+  } finally {
+    profileLoading.value = false
+  }
+}
+
+async function saveProfile() {
+  profileLoading.value = true
+  profileError.value   = ''
+  profileSuccess.value = false
+  try {
+    profile.value = await updateMe(companyNameInput.value.trim() || null)
+    profileSuccess.value = true
+  } catch {
+    profileError.value = '저장에 실패했습니다. 다시 시도해주세요.'
+  } finally {
+    profileLoading.value = false
+  }
+}
 
 const activeTab     = ref('billing')
 const showCancelConfirm = ref(false)
@@ -204,7 +297,7 @@ async function doCancelSubscription() {
   if (ok) showCancelConfirm.value = false
 }
 
-onMounted(loadStatus)
+onMounted(() => { loadStatus(); loadProfile() })
 </script>
 
 <style scoped>
@@ -428,6 +521,34 @@ onMounted(loadStatus)
 .coming-icon { opacity: .3; }
 .coming-title { font-family: 'Syne', sans-serif; font-size: .95rem; font-weight: 600; color: #9ca3af; margin: 0; }
 .coming-desc  { font-size: .8rem; color: #d1d5db; margin: 0; }
+
+/* ── Profile form ── */
+.profile-form { display: flex; flex-direction: column; gap: .875rem; }
+.form-row { display: flex; flex-direction: column; gap: .35rem; }
+.form-label { font-size: .775rem; font-weight: 600; color: #374151; }
+.form-hint  { font-size: .72rem; color: #9ca3af; }
+.form-actions { display: flex; justify-content: flex-end; padding-top: .25rem; }
+
+.btn-save {
+  display: flex; align-items: center; gap: .4rem;
+  padding: .5rem 1.25rem; background: #3b82f6; color: #fff;
+  border: none; border-radius: 8px;
+  font-family: 'DM Sans', sans-serif; font-size: .85rem; font-weight: 600;
+  cursor: pointer; transition: background .15s, box-shadow .15s;
+}
+.btn-save:hover:not(:disabled) { background: #2563eb; box-shadow: 0 4px 12px rgba(59,130,246,.3); }
+.btn-save:disabled { opacity: .6; cursor: not-allowed; }
+
+.success-banner {
+  display: flex; align-items: center; gap: .625rem;
+  padding: .75rem 1rem; background: #f0fdf4; border: 1px solid #bbf7d0;
+  border-radius: 9px; font-size: .825rem; color: #16a34a;
+}
+
+.coming-inline {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .825rem; color: #9ca3af; padding: .25rem 0;
+}
 
 .mono { font-family: 'DM Mono', monospace; }
 
