@@ -8,7 +8,14 @@ data class CheckResponse(
     val violationCount: Int,
     val violations: List<ViolationDto>,
     val checkedAt: Instant,
-    val processingMs: Long
+    val processingMs: Long,
+    val llmAnalysis: LlmAnalysisDto? = null
+)
+
+data class LlmAnalysisDto(
+    val analysis: String,
+    val citedLawCount: Int,
+    val citedPrecedentCount: Int
 )
 
 data class ViolationDto(

@@ -30,5 +30,6 @@ data class SenderInfoDto(
 )
 
 data class CheckOptionsDto(
-    val skipRules: List<String>? = null
+    val skipRules: List<String>? = null,
+    val useLlm: Boolean = false
 )

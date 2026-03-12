@@ -14,14 +14,16 @@ data class CheckResultDto(
     val compliant: Boolean,
     val violations: List<EvaluationResult>,
     val checkedAt: Instant,
-    val processingMs: Long
+    val processingMs: Long,
+    val llmLayer2Result: LlmLayer2Result? = null
 )
 
 @Service
 class ComplianceCheckService(
     private val ruleRegistry: RuleRegistry,
     private val evaluators: List<RuleEvaluator>,
-    private val checkLogRepository: CheckLogRepository
+    private val checkLogRepository: CheckLogRepository,
+    private val llmLayer2Service: LlmLayer2Service? = null
 ) {
     private val mapper = jacksonObjectMapper()
 
@@ -40,14 +42,20 @@ class ComplianceCheckService(
         val applicableRules = if (skipRules.isEmpty()) rules
         else rules.filter { it.code !in skipRules }
 
-        // 3. 각 규칙 평가
+        // 3. Layer 1: 각 규칙 평가
         val violations = applicableRules.mapNotNull { rule ->
             evaluators.find { it.supports(rule.type) }?.evaluate(context, rule)
         }
 
+        // 4. Layer 2: LLM 보조 분석 (옵션 활성화 시)
+        val useLlm = context.options["useLlm"] as? Boolean ?: false
+        val llmResult = if (useLlm && llmLayer2Service != null) {
+            llmLayer2Service.analyze(context.message, violations)
+        } else null
+
         val processingMs = System.currentTimeMillis() - startMs
 
-        // 4. CheckLog 저장
+        // 5. CheckLog 저장
         checkLogRepository.save(
             CheckLog(
                 tenantId = tenantId,
@@ -64,7 +72,8 @@ class ComplianceCheckService(
             compliant = violations.isEmpty(),
             violations = violations,
             checkedAt = Instant.now(),
-            processingMs = processingMs
+            processingMs = processingMs,
+            llmLayer2Result = llmResult
         )
     }
 }

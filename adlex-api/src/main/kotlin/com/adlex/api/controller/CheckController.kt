@@ -74,7 +74,14 @@ class CheckController(
                     legalBasis = it.legalBasis, suggestion = it.suggestion)
             },
             checkedAt = result.checkedAt,
-            processingMs = result.processingMs
+            processingMs = result.processingMs,
+            llmAnalysis = result.llmLayer2Result?.let {
+                LlmAnalysisDto(
+                    analysis = it.analysis,
+                    citedLawCount = it.citedLawCount,
+                    citedPrecedentCount = it.citedPrecedentCount
+                )
+            }
         )
     }
 
@@ -85,6 +92,7 @@ class CheckController(
     private fun buildOptions(request: CheckRequest): Map<String, Any> {
         val opts = mutableMapOf<String, Any>()
         request.options?.skipRules?.let { opts["skipRules"] = it }
+        request.options?.useLlm?.let { opts["useLlm"] = it }
         return opts
     }
 }
