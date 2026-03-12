@@ -31,6 +31,9 @@ class ApiKeyAuthFilter(
     private val mapper: ObjectMapper = jacksonObjectMapper()
     private val CACHE_TTL = Duration.ofMinutes(5)
 
+    override fun shouldNotFilter(request: HttpServletRequest): Boolean =
+        !request.requestURI.startsWith("/v1/")
+
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,
