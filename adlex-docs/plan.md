@@ -34,54 +34,54 @@
 - [x] 2.15 규칙 관리 API (CRUD) `backend/013` ← 1.3
 - [x] 2.16 규칙 관리 화면 `frontend/010` ← 2.7,2.15
 
-## Phase 3: 배포 (2주)
-- [ ] 3.1 Docker `infra/001`
-- [ ] 3.2 AWS 인프라 `infra/002`
-- [ ] 3.3 CI/CD `infra/003` ← 3.1,3.2
-- [ ] 3.4 HTTPS + 도메인 `infra/004` ← 3.2
-- [ ] 3.5 Health Check `infra/005` ← 3.2
-
-## Phase 4: 모니터링 (1주)
-- [ ] 4.1 Sentry `infra/006` ← 2.2
-- [ ] 4.2 Grafana `infra/007` ← 2.2
-- [ ] 4.3 Alarm + Slack `infra/008` ← 2.2
-- [ ] 4.4 로그 `infra/009` ← 2.2
-
-## Phase 5: AI/RAG 고도화 (3주)
+## Phase 3: AI/RAG 고도화 (3주)
 > 차별점: Layer 1(규칙 엔진, 결정론적·법조문 추적) + Layer 2(LLM+RAG, 맥락 보조)
 > LLM은 독립 판단자가 아니라 규칙 엔진 통과 후 과장·허위 표현 등 2차 검토 보조.
 > RAG: pgvector로 최신 법령 조문·판례를 LLM 컨텍스트에 주입 → 법조문 인용 가능.
 > 규칙 DB 자체가 핵심 자산 → 크롤러로 법령 변경 자동 반영.
 
-### 5-A: RAG 인프라
-- [ ] 5.1 pgvector 마이그레이션 + 법령 청크 테이블 `backend/014` ← 1.2
-- [ ] 5.2 법령 시드 데이터 50개 + 임베딩 파이프라인 `backend/015` ← 5.1
-- [ ] 5.3 판례 시드 데이터 + 임베딩 파이프라인 `backend/016` ← 5.1
-- [ ] 5.4 RAG 검색 서비스 (EmbeddingService + VectorSearchService) `backend/017` ← 5.1
+### 3-A: RAG 인프라
+- [ ] 3.1 pgvector 마이그레이션 + 법령 청크 테이블 `backend/014` ← 1.2
+- [ ] 3.2 법령 시드 데이터 50개 + 임베딩 파이프라인 `backend/015` ← 3.1
+- [ ] 3.3 판례 시드 데이터 + 임베딩 파이프라인 `backend/016` ← 3.1
+- [ ] 3.4 RAG 검색 서비스 (EmbeddingService + VectorSearchService) `backend/017` ← 3.1
 
-### 5-B: LLM Layer 2
-- [ ] 5.5 Claude API 클라이언트 (ClaudeApiClient) `backend/018` ← 5.4
-- [ ] 5.6 LLM Layer 2 보조 분석기 (RAG 컨텍스트 주입) `backend/019` ← 5.5,5.4
-- [ ] 5.7 수정 제안 API `backend/020` ← 5.6
-- [ ] 5.8 Layer 2 플랜별 제어 (PRO 이상만 호출) `backend/021` ← 5.6
+### 3-B: LLM Layer 2
+- [ ] 3.5 Claude API 클라이언트 (ClaudeApiClient) `backend/018` ← 3.4
+- [ ] 3.6 LLM Layer 2 보조 분석기 (RAG 컨텍스트 주입) `backend/019` ← 3.5,3.4
+- [ ] 3.7 수정 제안 API `backend/020` ← 3.6
+- [ ] 3.8 Layer 2 플랜별 제어 (PRO 이상만 호출) `backend/021` ← 3.6
 
-### 5-C: 법령 자동화
-- [ ] 5.9 법령 크롤러 (국가법령정보센터 변경 감지) `backend/022` ← 1.3
-- [ ] 5.10 크롤러 → 청크 분할 → 임베딩 자동 업데이트 `backend/023` ← 5.9,5.4
-- [ ] 5.11 크롤러 → 규칙 DB 자동 변환 파이프라인 (LLM 보조) `backend/024` ← 5.9,5.6
+### 3-C: 법령 자동화
+- [ ] 3.9 법령 크롤러 (국가법령정보센터 변경 감지) `backend/022` ← 1.3
+- [ ] 3.10 크롤러 → 청크 분할 → 임베딩 자동 업데이트 `backend/023` ← 3.9,3.4
+- [ ] 3.11 크롤러 → 규칙 DB 자동 변환 파이프라인 (LLM 보조) `backend/024` ← 3.9,3.6
 
-### 5-D: 기타 고도화
-- [ ] 5.12 채널별 규칙 세분화 (LengthCheck/ContentRatio Evaluator) `backend/025` ← 1.3
-- [ ] 5.13 Webhook `backend/026` ← 1.4
-- [ ] 5.14 리포트 (유사 판례 포함) `backend/027` ← 3.4,5.3
-- [ ] 5.15 SDK Python `backend/028` ← 1.4
-- [ ] 5.16 SDK JS `backend/029` ← 1.4
+### 3-D: 기타 고도화
+- [ ] 3.12 채널별 규칙 세분화 (LengthCheck/ContentRatio Evaluator) `backend/025` ← 1.3
+- [ ] 3.13 Webhook `backend/026` ← 1.4
+- [ ] 3.14 리포트 (유사 판례 포함) `backend/027` ← 4.4,3.3
+- [ ] 3.15 SDK Python `backend/028` ← 1.4
+- [ ] 3.16 SDK JS `backend/029` ← 1.4
+
+## Phase 4: 배포 (2주)
+- [ ] 4.1 Docker `infra/001`
+- [ ] 4.2 AWS 인프라 `infra/002`
+- [ ] 4.3 CI/CD `infra/003` ← 4.1,4.2
+- [ ] 4.4 HTTPS + 도메인 `infra/004` ← 4.2
+- [ ] 4.5 Health Check `infra/005` ← 4.2
+
+## Phase 5: 모니터링 (1주)
+- [ ] 5.1 Sentry `infra/006` ← 2.2
+- [ ] 5.2 Grafana `infra/007` ← 2.2
+- [ ] 5.3 Alarm + Slack `infra/008` ← 2.2
+- [ ] 5.4 로그 `infra/009` ← 2.2
 
 ## Phase 6: 추가 (지속)
 - [ ] 6.1 백오피스 `frontend/010`
-- [ ] 6.2 산업별 규칙 `backend/020` ← 1.3
-- [ ] 6.3 멀티유저 API `backend/021` ← 3.2
+- [ ] 6.2 산업별 규칙 `backend/030` ← 1.3
+- [ ] 6.3 멀티유저 API `backend/031` ← 4.2
 - [ ] 6.4 멀티유저 화면 `frontend/011` ← 6.3
-- [ ] 6.5 Slack 봇 `backend/022`
-- [ ] 6.6 커스텀 규칙 API `backend/023` ← 1.3
+- [ ] 6.5 Slack 봇 `backend/032`
+- [ ] 6.6 커스텀 규칙 API `backend/033` ← 1.3
 - [ ] 6.7 커스텀 규칙 화면 `frontend/012` ← 6.6
