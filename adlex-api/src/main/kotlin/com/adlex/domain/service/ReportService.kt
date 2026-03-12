@@ -44,10 +44,11 @@ class ReportService(
             .getOrNull()
 
         // 3. LLM Layer 2 보조 분석 (옵션 + 플랜 검증)
-        val llmResult = if (request.includeLlmAnalysis && llmLayer2Service != null) {
+        val llmService = llmLayer2Service
+        val llmResult = if (request.includeLlmAnalysis && llmService != null) {
             runCatching {
                 llmPlanGuard?.requireLlmAccess(tenantId)
-                llmLayer2Service.analyze(request.message, violations)
+                llmService.analyze(request.message, violations)
             }.onFailure { log.warn("LLM 분석 실패 (리포트 계속): ${it.message}") }
                 .getOrNull()
         } else null
