@@ -2,8 +2,8 @@
 > AI-powered API for checking marketing and advertising compliance
 
 ## 진행 요약
-- 전체: 34/78 (43%)
-- 현재: Phase 3 진행중 (11/16)
+- 전체: 36/78 (46%)
+- 현재: Phase 3 진행중 (13/16)
 
 ---
 
@@ -58,8 +58,8 @@
 - [x] 3.11 크롤러 → 규칙 DB 자동 변환 파이프라인 (LLM 보조) `backend/024` ← 3.9,3.6
 
 ### 3-D: 기타 고도화
-- [ ] 3.12 채널별 규칙 세분화 (LengthCheck/ContentRatio Evaluator) `backend/025` ← 1.3
-- [ ] 3.13 Webhook `backend/026` ← 1.4
+- [x] 3.12 채널별 규칙 세분화 (LengthCheck/ContentRatio Evaluator) `backend/025` ← 1.3
+- [x] 3.13 Webhook `backend/026` ← 1.4
 - [ ] 3.14 리포트 (유사 판례 포함) `backend/027` ← 4.4,3.3
 - [ ] 3.15 SDK Python `backend/028` ← 1.4
 - [ ] 3.16 SDK JS `backend/029` ← 1.4

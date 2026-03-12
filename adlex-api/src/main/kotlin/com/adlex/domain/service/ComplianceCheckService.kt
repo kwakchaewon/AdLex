@@ -6,6 +6,8 @@ import com.adlex.engine.RuleRegistry
 import com.adlex.engine.evaluator.RuleEvaluator
 import com.adlex.engine.model.EvaluationContext
 import com.adlex.engine.model.EvaluationResult
+import com.adlex.infra.webhook.CheckCompletedPayload
+import com.adlex.infra.webhook.WebhookDeliveryService
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.stereotype.Service
 import java.time.Instant
@@ -24,7 +26,8 @@ class ComplianceCheckService(
     private val evaluators: List<RuleEvaluator>,
     private val checkLogRepository: CheckLogRepository,
     private val llmLayer2Service: LlmLayer2Service? = null,
-    private val llmPlanGuard: LlmPlanGuard? = null
+    private val llmPlanGuard: LlmPlanGuard? = null,
+    private val webhookDeliveryService: WebhookDeliveryService? = null
 ) {
     private val mapper = jacksonObjectMapper()
 
@@ -70,12 +73,27 @@ class ComplianceCheckService(
             )
         )
 
-        return CheckResultDto(
+        val result = CheckResultDto(
             compliant = violations.isEmpty(),
             violations = violations,
             checkedAt = Instant.now(),
             processingMs = processingMs,
             llmLayer2Result = llmResult
         )
+
+        // 6. Webhook 비동기 전송
+        webhookDeliveryService?.deliverAsync(
+            tenantId = tenantId,
+            event = "check.completed",
+            payload = CheckCompletedPayload(
+                tenantId = tenantId,
+                compliant = result.compliant,
+                violationCount = violations.size,
+                checkedAt = result.checkedAt,
+                processingMs = processingMs
+            )
+        )
+
+        return result
     }
 }
