@@ -2,7 +2,7 @@
 > AI-powered API for checking marketing and advertising compliance
 
 ## 진행 요약
-- 전체: 23/55 (41%)
+- 전체: 23/71 (32%)
 - 현재: Phase 2 완료
 
 ---
@@ -76,6 +76,38 @@
 - [ ] 5.2 Grafana `infra/007` ← 2.2
 - [ ] 5.3 Alarm + Slack `infra/008` ← 2.2
 - [ ] 5.4 로그 `infra/009` ← 2.2
+
+## Phase 7: 상용화 준비 — 보안 강화 + 서비스 완성도 (별도 일정)
+> 기준: Claude Security 가이드라인 + 과학기술부 「주요정보통신기반시설 기술적 취약점 분석·평가 방법(2021)」
+> 세부 취약 항목은 별도 문서(adlex-docs/security-checklist.md)로 관리 예정.
+> ※ 상세 태스크는 보안 점검 문서 업로드 후 확정
+
+### 7-A: 보안 취약점 분석 및 대응
+- [ ] 7.1 보안 취약점 분석 (`security/001`) — 주요정보통신기반시설 기준 항목 점검
+- [ ] 7.2 인증/인가 보안 강화 (`security/002`) ← 7.1
+  > JWT 알고리즘 검증, 토큰 탈취 대응, API Key 권한 세분화
+- [ ] 7.3 입력값 검증 + 인젝션 대응 (`security/003`) ← 7.1
+  > SQL Injection, SSRF, Path Traversal, XXE 대응
+- [ ] 7.4 API 보안 강화 (`security/004`) ← 7.1
+  > CORS 정책, 보안 헤더(CSP/HSTS/X-Frame), 민감 정보 노출 방지
+- [ ] 7.5 LLM 보안 (`security/005`) ← 7.1
+  > Prompt Injection 방어, Claude API 입출력 검증, 응답 sanitization
+- [ ] 7.6 인프라 보안 (`security/006`) ← 4.2,7.1
+  > AWS IAM 최소 권한, VPC 설정, 보안 그룹, 시크릿 관리(Secrets Manager)
+- [ ] 7.7 데이터 보호 (`security/007`) ← 7.1
+  > 개인정보 암호화(AES-256), PII 마스킹, 데이터 보존 정책, GDPR/개인정보보호법 대응
+- [ ] 7.8 보안 감사 로그 (`security/008`) ← 5.4,7.1
+  > 인증 이벤트, 권한 변경, 이상 접근 패턴 로깅 및 알림
+
+### 7-B: 서비스 상용화 완성도
+- [ ] 7.9 API 문서 자동화 (`backend/034`) — Swagger/OpenAPI 정비, 외부 공개용 문서
+- [ ] 7.10 온보딩 플로우 개선 (`frontend/013`) — 가입 후 API Key 발급까지 가이드
+- [ ] 7.11 이용약관 / 개인정보처리방침 법적 검토 (`legal/001`)
+- [ ] 7.12 서비스 SLA 정의 + 상태 페이지 (`infra/010`) ← 5.1
+- [ ] 7.13 부하 테스트 + 성능 튜닝 (`infra/011`) ← 4.3
+- [ ] 7.14 재해복구(DR) 계획 + 백업 정책 (`infra/012`) ← 4.2
+- [ ] 7.15 침투 테스트 (외부 수행) (`security/009`) ← 7.1~7.8 완료 후
+- [ ] 7.16 보안 인증 검토 (ISMS-P 또는 ISO 27001) (`security/010`)
 
 ## Phase 6: 추가 (지속)
 - [ ] 6.1 백오피스 `frontend/010`
