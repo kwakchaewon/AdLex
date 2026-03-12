@@ -24,18 +24,7 @@ class RuleController(
         } else {
             ruleRegistry.getActiveRules()
         }
-        return rules.map { rule ->
-            RuleResponse(
-                code = rule.code,
-                name = rule.name,
-                description = rule.description,
-                type = rule.type,
-                channels = rule.channels(),
-                severity = rule.severity,
-                legalBasis = rule.legalBasis,
-                active = rule.active
-            )
-        }
+        return rules.map { RuleResponse.from(it) }
     }
 
     @GetMapping("/{code}")
@@ -43,15 +32,6 @@ class RuleController(
     fun getRule(@PathVariable code: String): RuleResponse {
         val rule = ruleRegistry.getActiveRules().find { it.code == code }
             ?: throw BusinessException(ErrorCode.NOT_FOUND, "규칙을 찾을 수 없습니다: $code")
-        return RuleResponse(
-            code = rule.code,
-            name = rule.name,
-            description = rule.description,
-            type = rule.type,
-            channels = rule.channels(),
-            severity = rule.severity,
-            legalBasis = rule.legalBasis,
-            active = rule.active
-        )
+        return RuleResponse.from(rule)
     }
 }

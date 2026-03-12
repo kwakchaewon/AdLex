@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface RuleRepository : JpaRepository<Rule, Long> {
     fun findAllByActiveTrue(): List<Rule>
+    fun findByCode(code: String): Rule?
+    fun existsByCode(code: String): Boolean
 }
