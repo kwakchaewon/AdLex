@@ -1,0 +1,20 @@
+package com.adlex.api.dto
+
+import com.adlex.engine.model.Severity
+import java.time.Instant
+
+data class CheckResponse(
+    val compliant: Boolean,
+    val violationCount: Int,
+    val violations: List<ViolationDto>,
+    val checkedAt: Instant,
+    val processingMs: Long
+)
+
+data class ViolationDto(
+    val ruleCode: String,
+    val severity: Severity,
+    val message: String,
+    val legalBasis: String? = null,
+    val suggestion: String? = null
+)
