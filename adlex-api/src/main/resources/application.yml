@@ -42,6 +42,19 @@ adlex:
     law-chunks-top-k: 3       # 유사 법령 조문 검색 수
     precedents-top-k: 2       # 유사 판례 검색 수
     cache-ttl-minutes: 60     # 임베딩 캐시 TTL (분)
+  crawler:
+    enabled: true
+    law-api-key: ${LAW_API_KEY:}  # 국가법령정보센터 Open API 키
+    cron: "0 0 2 * * *"           # 매일 새벽 2시 실행
+    target-laws:
+      - "표시·광고의 공정화에 관한 법률"
+      - "전자상거래 등에서의 소비자보호에 관한 법률"
+      - "방문판매 등에 관한 법률"
+      - "식품 등의 표시·광고에 관한 법률"
+      - "화장품법"
+      - "의료기기법"
+      - "의료법"
+      - "건강기능식품에 관한 법률"
 
 portone:
   api-key: ${PORTONE_API_KEY:}
