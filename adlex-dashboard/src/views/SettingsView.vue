@@ -261,8 +261,8 @@ const planKeys = Object.keys(PLAN_INFO) as Plan[]
 
 const tabIndex = computed(() => tabs.findIndex((t) => t.id === activeTab.value))
 const indicatorStyle = computed(() => ({
+  width: `calc((100% - 8px) / ${tabs.length})`,
   transform: `translateX(${tabIndex.value * 100}%)`,
-  width: `${100 / tabs.length}%`,
 }))
 
 const usagePct = computed(() => {
@@ -312,7 +312,8 @@ onMounted(() => { loadStatus(); loadProfile() })
 /* ── Tab bar ── */
 .tab-bar {
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   background: #fff;
   border: 1px solid #e9ecf3;
   border-radius: 10px;
@@ -320,6 +321,7 @@ onMounted(() => { loadStatus(); loadProfile() })
   margin-bottom: 1.5rem;
   overflow: hidden;
   width: fit-content;
+  min-width: 280px;
 }
 .tab-btn {
   position: relative;
@@ -547,6 +549,22 @@ onMounted(() => { loadStatus(); loadProfile() })
   display: flex; align-items: center; gap: .5rem;
   font-size: .825rem; color: #9ca3af; padding: .25rem 0;
 }
+
+.field-input {
+  width: 100%;
+  padding: .5rem .75rem;
+  background: #fff;
+  border: 1.5px solid #e9ecf3;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .875rem;
+  color: #0d1530;
+  outline: none;
+  transition: border-color .15s, box-shadow .15s;
+  box-sizing: border-box;
+}
+.field-input:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,.12); }
+.field-input:disabled { background: #f8f9fc; color: #9ca3af; cursor: not-allowed; }
 
 .mono { font-family: 'DM Mono', monospace; }
 
