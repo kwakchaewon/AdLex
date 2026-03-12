@@ -16,28 +16,28 @@
 - [x] 1.6 인증 + Rate Limit `backend/006` ← 1.2
 - [x] 1.7 테스트 `backend/007` ← 1.4,1.6
 
-## Phase 2: 배포 (2주)
-- [ ] 2.1 Docker `infra/001`
-- [ ] 2.2 AWS 인프라 `infra/002`
-- [ ] 2.3 CI/CD `infra/003` ← 2.1,2.2
-- [ ] 2.4 HTTPS + 도메인 `infra/004` ← 2.2
-- [ ] 2.5 Health Check `infra/005` ← 2.2
+## Phase 2: 화면 + API (3주)
+- [ ] 2.1 Vue 셋업 `frontend/001`
+- [ ] 2.2 회원 API `backend/008` ← 1.6
+- [ ] 2.3 API Key API `backend/009` ← 2.2
+- [ ] 2.4 히스토리 API `backend/010` ← 1.2
+- [ ] 2.5 통계 API `backend/011` ← 1.2
+- [ ] 2.6 로그인 화면 `frontend/002` ← 2.1,2.2
+- [ ] 2.7 레이아웃 `frontend/003` ← 2.1
+- [ ] 2.8 대시보드 `frontend/004` ← 2.7,2.5
+- [ ] 2.9 API Key 화면 `frontend/005` ← 2.7,2.3
+- [ ] 2.10 히스토리 화면 `frontend/006` ← 2.7,2.4
+- [ ] 2.11 Playground `frontend/007` ← 2.7
+- [ ] 2.12 결제 API `backend/012` ← 2.2
+- [ ] 2.13 결제 화면 `frontend/009` ← 2.7,2.12
+- [ ] 2.14 Settings `frontend/008` ← 2.2
 
-## Phase 3: 화면 + API (3주)
-- [ ] 3.1 Vue 셋업 `frontend/001`
-- [ ] 3.2 회원 API `backend/008` ← 1.6
-- [ ] 3.3 API Key API `backend/009` ← 3.2
-- [ ] 3.4 히스토리 API `backend/010` ← 1.2
-- [ ] 3.5 통계 API `backend/011` ← 1.2
-- [ ] 3.6 로그인 화면 `frontend/002` ← 3.1,3.2
-- [ ] 3.7 레이아웃 `frontend/003` ← 3.1
-- [ ] 3.8 대시보드 `frontend/004` ← 3.7,3.5
-- [ ] 3.9 API Key 화면 `frontend/005` ← 3.7,3.3
-- [ ] 3.10 히스토리 화면 `frontend/006` ← 3.7,3.4
-- [ ] 3.11 Playground `frontend/007` ← 3.7
-- [ ] 3.12 결제 API `backend/012` ← 3.2
-- [ ] 3.13 결제 화면 `frontend/009` ← 3.7,3.12
-- [ ] 3.14 Settings `frontend/008` ← 3.2
+## Phase 3: 배포 (2주)
+- [ ] 3.1 Docker `infra/001`
+- [ ] 3.2 AWS 인프라 `infra/002`
+- [ ] 3.3 CI/CD `infra/003` ← 3.1,3.2
+- [ ] 3.4 HTTPS + 도메인 `infra/004` ← 3.2
+- [ ] 3.5 Health Check `infra/005` ← 3.2
 
 ## Phase 4: 모니터링 (1주)
 - [ ] 4.1 Sentry `infra/006` ← 2.2
