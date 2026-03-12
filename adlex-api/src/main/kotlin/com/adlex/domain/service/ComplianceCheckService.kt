@@ -23,7 +23,8 @@ class ComplianceCheckService(
     private val ruleRegistry: RuleRegistry,
     private val evaluators: List<RuleEvaluator>,
     private val checkLogRepository: CheckLogRepository,
-    private val llmLayer2Service: LlmLayer2Service? = null
+    private val llmLayer2Service: LlmLayer2Service? = null,
+    private val llmPlanGuard: LlmPlanGuard? = null
 ) {
     private val mapper = jacksonObjectMapper()
 
@@ -47,9 +48,10 @@ class ComplianceCheckService(
             evaluators.find { it.supports(rule.type) }?.evaluate(context, rule)
         }
 
-        // 4. Layer 2: LLM 보조 분석 (옵션 활성화 시)
+        // 4. Layer 2: LLM 보조 분석 (옵션 활성화 + 플랜 검증)
         val useLlm = context.options["useLlm"] as? Boolean ?: false
         val llmResult = if (useLlm && llmLayer2Service != null) {
+            llmPlanGuard?.requireLlmAccess(tenantId)
             llmLayer2Service.analyze(context.message, violations)
         } else null
 

@@ -8,6 +8,7 @@ enum class ErrorCode(val status: Int) {
     DUPLICATE_EMAIL(409),
     RATE_LIMIT_EXCEEDED(429),
     QUOTA_EXCEEDED(402),
+    PLAN_UPGRADE_REQUIRED(402),
     INTERNAL_ERROR(500)
 }
 

@@ -2,8 +2,8 @@
 > AI-powered API for checking marketing and advertising compliance
 
 ## 진행 요약
-- 전체: 30/71 (42%)
-- 현재: Phase 3 진행중 (7/16)
+- 전체: 31/71 (43%)
+- 현재: Phase 3 진행중 (8/16)
 
 ---
 
@@ -50,7 +50,7 @@
 - [x] 3.5 Claude API 클라이언트 (ClaudeApiClient) `backend/018` ← 3.4
 - [x] 3.6 LLM Layer 2 보조 분석기 (RAG 컨텍스트 주입) `backend/019` ← 3.5,3.4
 - [x] 3.7 수정 제안 API `backend/020` ← 3.6
-- [ ] 3.8 Layer 2 플랜별 제어 (PRO 이상만 호출) `backend/021` ← 3.6
+- [x] 3.8 Layer 2 플랜별 제어 (PRO 이상만 호출) `backend/021` ← 3.6
 
 ### 3-C: 법령 자동화
 - [ ] 3.9 법령 크롤러 (국가법령정보센터 변경 감지) `backend/022` ← 1.3
