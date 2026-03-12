@@ -98,6 +98,7 @@ AdLex — 마케팅/광고 메시지(SMS/카카오/이메일) 법규 준수 자�
 - <script setup lang="ts"> + Composition API 필수.
 - PrimeVue 4 컴포넌트 우선. TailwindCSS 유틸리티.
 - Pinia 상태 관리. Axios (src/api/client.ts).
+- **화면/페이지 개발 시 `frontend-design` 스킬 필수 사용** (랜딩 페이지, 대시보드, 모든 Vue 페이지 포함).
  
 ### Git 커밋
 형식: <type>(<scope>): <description>
@@ -117,5 +118,6 @@ subject: 50자 이내. 명령형. 마침표 없음.
 ## 작업 프로세스
 1. 태스크 파일(adlex-docs/tasks/)을 읽고 OUTPUT 경로에 파일 생성
 2. 코드 생성 후 빌드/테스트 명령 안내 (PowerShell: .\gradlew.bat)
-3. 코드 생성 완료 후 /auto-commit 스킬을 자동 실행하여 커밋
-4. plan.md의 해당 태스크를 [x] 완료로 업데이트
+3. 프론트엔드 화면 개발 시 `frontend-design` 스킬 활용
+4. 코드 생성 완료 후 /auto-commit 스킬을 자동 실행하여 커밋
+5. plan.md의 해당 태스크를 [x] 완료로 업데이트
