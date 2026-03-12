@@ -5,6 +5,7 @@ enum class ErrorCode(val status: Int) {
     UNAUTHORIZED(401),
     FORBIDDEN(403),
     NOT_FOUND(404),
+    DUPLICATE_EMAIL(409),
     RATE_LIMIT_EXCEEDED(429),
     QUOTA_EXCEEDED(402),
     INTERNAL_ERROR(500)

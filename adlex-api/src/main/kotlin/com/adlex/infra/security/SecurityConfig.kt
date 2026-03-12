@@ -20,7 +20,8 @@ class SecurityConfig(
     private val apiKeyRepository: ApiKeyRepository,
     private val apiKeyService: ApiKeyService,
     private val rateLimiter: RateLimiter,
-    private val redisTemplate: StringRedisTemplate
+    private val redisTemplate: StringRedisTemplate,
+    private val jwtProvider: JwtProvider
 ) {
 
     @Bean
@@ -36,13 +37,13 @@ class SecurityConfig(
                         "/v3/api-docs/**",
                         "/actuator/health/**"
                     ).permitAll()
-                    // /api/auth/** 공개 경로는 Task 3.2(회원 API)에서 추가
-                    // /v1/** 은 ApiKeyAuthFilter에서 자체 인증 처리 (permitAll로 security 체인 통과)
+                    .requestMatchers("/api/auth/**").permitAll()
                     .requestMatchers("/v1/**").permitAll()
                     .anyRequest().authenticated()
             }
             .formLogin { it.disable() }
             .httpBasic { it.disable() }
+            .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter::class.java)
             .addFilterBefore(apiKeyAuthFilter(), UsernamePasswordAuthenticationFilter::class.java)
 
         return http.build()
@@ -51,6 +52,10 @@ class SecurityConfig(
     @Bean
     fun apiKeyAuthFilter(): ApiKeyAuthFilter =
         ApiKeyAuthFilter(apiKeyRepository, apiKeyService, rateLimiter, redisTemplate)
+
+    @Bean
+    fun jwtAuthFilter(): JwtAuthFilter =
+        JwtAuthFilter(jwtProvider)
 
     @Bean
     fun passwordEncoder(): PasswordEncoder = BCryptPasswordEncoder()
