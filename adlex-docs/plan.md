@@ -2,8 +2,8 @@
 > AI-powered API for checking marketing and advertising compliance
 
 ## 진행 요약
-- 전체: 6/44 (13%)
-- 현재: Phase 1 진행중 (6/7)
+- 전체: 7/44 (15%)
+- 현재: Phase 1 완료
 
 ---
 
@@ -14,7 +14,7 @@
 - [x] 1.4 POST /v1/check `backend/004` ← 1.3
 - [x] 1.5 Batch + Rules API `backend/005` ← 1.4
 - [x] 1.6 인증 + Rate Limit `backend/006` ← 1.2
-- [ ] 1.7 테스트 `backend/007` ← 1.4,1.6
+- [x] 1.7 테스트 `backend/007` ← 1.4,1.6
 
 ## Phase 2: 배포 (2주)
 - [ ] 2.1 Docker `infra/001`
