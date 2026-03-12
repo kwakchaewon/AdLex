@@ -2,6 +2,8 @@ package com.adlex.api.controller
 
 import com.adlex.infra.crawler.LawChangeResult
 import com.adlex.infra.crawler.LawCrawlerService
+import com.adlex.infra.crawler.LawRuleConversionResult
+import com.adlex.infra.crawler.LawRuleConversionService
 import com.adlex.infra.crawler.LawUpdateResult
 import com.adlex.infra.crawler.LawUpdateService
 import io.swagger.v3.oas.annotations.Operation
@@ -17,7 +19,8 @@ import org.springframework.web.bind.annotation.RestController
 @Tag(name = "Crawler Admin", description = "법령 크롤러 관리 API (내부용)")
 class CrawlerAdminController(
     private val lawCrawlerService: LawCrawlerService,
-    private val lawUpdateService: LawUpdateService
+    private val lawUpdateService: LawUpdateService,
+    private val lawRuleConversionService: LawRuleConversionService
 ) {
 
     @PostMapping("/law/detect")
@@ -43,4 +46,9 @@ class CrawlerAdminController(
         val change = lawCrawlerService.checkLawChange(lawName)
         return lawUpdateService.updateLaw(change.copy(changed = true))
     }
+
+    @PostMapping("/law/rules/convert")
+    @Operation(summary = "특정 법령 조문 → 규칙 DB 자동 변환 (LLM 보조, 수동 트리거)")
+    fun convertLawToRules(@RequestParam lawName: String): LawRuleConversionResult =
+        lawRuleConversionService.convertLawToRules(lawName)
 }

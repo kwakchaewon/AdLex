@@ -2,8 +2,8 @@
 > AI-powered API for checking marketing and advertising compliance
 
 ## 진행 요약
-- 전체: 33/71 (46%)
-- 현재: Phase 3 진행중 (10/16)
+- 전체: 34/71 (47%)
+- 현재: Phase 3 진행중 (11/16)
 
 ---
 
@@ -55,7 +55,7 @@
 ### 3-C: 법령 자동화
 - [x] 3.9 법령 크롤러 (국가법령정보센터 변경 감지) `backend/022` ← 1.3
 - [x] 3.10 크롤러 → 청크 분할 → 임베딩 자동 업데이트 `backend/023` ← 3.9,3.4
-- [ ] 3.11 크롤러 → 규칙 DB 자동 변환 파이프라인 (LLM 보조) `backend/024` ← 3.9,3.6
+- [x] 3.11 크롤러 → 규칙 DB 자동 변환 파이프라인 (LLM 보조) `backend/024` ← 3.9,3.6
 
 ### 3-D: 기타 고도화
 - [ ] 3.12 채널별 규칙 세분화 (LengthCheck/ContentRatio Evaluator) `backend/025` ← 1.3
