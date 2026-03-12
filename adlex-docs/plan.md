@@ -2,8 +2,8 @@
 > AI-powered API for checking marketing and advertising compliance
 
 ## 진행 요약
-- 전체: 38/78 (48%)
-- 현재: Phase 3 진행중 (15/16)
+- 전체: 39/78 (50%)
+- 현재: Phase 3 완료
 
 ---
 
@@ -62,7 +62,7 @@
 - [x] 3.13 Webhook `backend/026` ← 1.4
 - [x] 3.14 리포트 (유사 판례 포함) `backend/027` ← 4.4,3.3
 - [x] 3.15 SDK Python `backend/028` ← 1.4
-- [ ] 3.16 SDK JS `backend/029` ← 1.4
+- [x] 3.16 SDK JS `backend/029` ← 1.4
 
 ## Phase 4: 배포 (2주)
 - [ ] 4.1 Docker `infra/001`
