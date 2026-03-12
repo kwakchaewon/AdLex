@@ -17,8 +17,10 @@ class JwtAuthFilter(private val jwtProvider: JwtProvider) : OncePerRequestFilter
 
     private val mapper: ObjectMapper = jacksonObjectMapper()
 
-    override fun shouldNotFilter(request: HttpServletRequest): Boolean =
-        !request.requestURI.startsWith("/api/users/")
+    override fun shouldNotFilter(request: HttpServletRequest): Boolean {
+        val uri = request.requestURI
+        return !uri.startsWith("/api/") || uri.startsWith("/api/auth/")
+    }
 
     override fun doFilterInternal(
         request: HttpServletRequest,

@@ -1,5 +1,7 @@
 package com.adlex.domain.service
 
+import com.adlex.api.advice.BusinessException
+import com.adlex.api.advice.ErrorCode
 import com.adlex.domain.entity.ApiKey
 import com.adlex.domain.entity.ApiKeyStatus
 import com.adlex.domain.repository.ApiKeyRepository
@@ -42,6 +44,19 @@ class ApiKeyService(
         val hash = sha256Hex(rawKey)
         val apiKey = apiKeyRepository.findByKeyHash(hash) ?: return null
         return if (apiKey.status == ApiKeyStatus.ACTIVE) apiKey else null
+    }
+
+    fun listKeys(tenantId: Long): List<ApiKey> =
+        apiKeyRepository.findAllByTenantId(tenantId)
+
+    fun revokeKey(tenantId: Long, keyId: Long) {
+        val apiKey = apiKeyRepository.findById(keyId).orElseThrow {
+            BusinessException(ErrorCode.NOT_FOUND, "API Key를 찾을 수 없습니다")
+        }
+        if (apiKey.tenantId != tenantId)
+            throw BusinessException(ErrorCode.FORBIDDEN, "해당 API Key에 대한 권한이 없습니다")
+        apiKey.status = ApiKeyStatus.REVOKED
+        apiKeyRepository.save(apiKey)
     }
 
     fun sha256Hex(input: String): String {

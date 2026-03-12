@@ -2,8 +2,8 @@
 > AI-powered API for checking marketing and advertising compliance
 
 ## 진행 요약
-- 전체: 9/48 (18%)
-- 현재: Phase 2 진행중 (2/16)
+- 전체: 10/48 (20%)
+- 현재: Phase 2 진행중 (3/16)
 
 ---
 
@@ -19,7 +19,7 @@
 ## Phase 2: 화면 + API (3주)
 - [x] 2.1 Vue 셋업 `frontend/001`
 - [x] 2.2 회원 API `backend/008` ← 1.6
-- [ ] 2.3 API Key API `backend/009` ← 2.2
+- [x] 2.3 API Key API `backend/009` ← 2.2
 - [ ] 2.4 히스토리 API `backend/010` ← 1.2
 - [ ] 2.5 통계 API `backend/011` ← 1.2
 - [ ] 2.6 로그인 화면 `frontend/002` ← 2.1,2.2
