@@ -100,6 +100,48 @@ class EmbeddingPipelineService(
         return EmbeddingPipelineResult(processed = processed, skipped = precedents.size - processed)
     }
 
+    /**
+     * 특정 법령명의 활성 청크에 대해서만 임베딩 생성.
+     * 법령 업데이트 파이프라인(3.10)에서 신규 청크만 효율적으로 처리하기 위해 사용.
+     */
+    @Transactional
+    fun generateEmbeddingsForLaw(lawName: String): EmbeddingPipelineResult {
+        val chunks = lawChunkRepository.findAllByLawNameAndActiveTrue(lawName)
+            .filter { it.id > 0 }
+
+        if (chunks.isEmpty()) {
+            log.info("임베딩 대상 청크 없음 (법령: $lawName)")
+            return EmbeddingPipelineResult(processed = 0, skipped = 0)
+        }
+
+        log.info("법령 청크 임베딩 시작: $lawName — ${chunks.size}개")
+        var processed = 0
+
+        chunks.chunked(batchSize).forEach { batch ->
+            val texts = batch.map { chunk ->
+                buildEmbeddingText(
+                    lawName = chunk.lawName,
+                    articleNo = chunk.articleNo,
+                    articleTitle = chunk.articleTitle,
+                    content = chunk.content
+                )
+            }
+
+            runCatching {
+                val vectors = embeddingService.embedBatch(texts)
+                batch.zip(vectors).forEach { (chunk, vector) ->
+                    lawChunkRepository.updateEmbedding(chunk.id, vector)
+                    processed++
+                }
+            }.onFailure { e ->
+                log.error("법령 청크 임베딩 배치 실패 [$lawName]: ${e.message}", e)
+            }
+        }
+
+        log.info("법령 청크 임베딩 완료: $lawName — $processed / ${chunks.size}개")
+        return EmbeddingPipelineResult(processed = processed, skipped = chunks.size - processed)
+    }
+
     /** 전체 파이프라인 실행 */
     fun generateAll(): EmbeddingPipelineResult {
         val law = generateLawChunkEmbeddings()
