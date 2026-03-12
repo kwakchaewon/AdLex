@@ -39,6 +39,10 @@ adlex:
   jwt:
     secret: ${ADLEX_JWT_SECRET:adlex-local-dev-secret-key-minimum-256-bits-long-padding}
 
+portone:
+  api-key: ${PORTONE_API_KEY:}
+  api-secret: ${PORTONE_API_SECRET:}
+
 management:
   endpoints:
     web:

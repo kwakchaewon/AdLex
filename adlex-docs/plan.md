@@ -2,8 +2,8 @@
 > AI-powered API for checking marketing and advertising compliance
 
 ## 진행 요약
-- 전체: 18/48 (37%)
-- 현재: Phase 2 진행중 (11/16)
+- 전체: 19/48 (39%)
+- 현재: Phase 2 진행중 (12/16)
 
 ---
 
@@ -28,7 +28,7 @@
 - [x] 2.9 API Key 화면 `frontend/005` ← 2.7,2.3
 - [x] 2.10 히스토리 화면 `frontend/006` ← 2.7,2.4
 - [x] 2.11 Playground `frontend/007` ← 2.7
-- [ ] 2.12 결제 API `backend/012` ← 2.2
+- [x] 2.12 결제 API `backend/012` ← 2.2
 - [ ] 2.13 결제 화면 `frontend/009` ← 2.7,2.12
 - [ ] 2.14 Settings `frontend/008` ← 2.2
 - [ ] 2.15 규칙 관리 API (CRUD) `backend/013` ← 1.3
