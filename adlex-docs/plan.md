@@ -2,7 +2,7 @@
 > AI-powered API for checking marketing and advertising compliance
 
 ## 진행 요약
-- 전체: 7/44 (15%)
+- 전체: 7/48 (14%)
 - 현재: Phase 1 완료
 
 ---
@@ -31,6 +31,8 @@
 - [ ] 2.12 결제 API `backend/012` ← 2.2
 - [ ] 2.13 결제 화면 `frontend/009` ← 2.7,2.12
 - [ ] 2.14 Settings `frontend/008` ← 2.2
+- [ ] 2.15 규칙 관리 API (CRUD) `backend/013` ← 1.3
+- [ ] 2.16 규칙 관리 화면 `frontend/010` ← 2.7,2.15
 
 ## Phase 3: 배포 (2주)
 - [ ] 3.1 Docker `infra/001`
@@ -46,13 +48,15 @@
 - [ ] 4.4 로그 `infra/009` ← 2.2
 
 ## Phase 5: 고도화 (2주)
-- [ ] 5.1 LLM `backend/013` ← 1.3
-- [ ] 5.2 수정 제안 `backend/014` ← 5.1
-- [ ] 5.3 채널별 규칙 `backend/015` ← 1.3
-- [ ] 5.4 Webhook `backend/016` ← 1.4
-- [ ] 5.5 리포트 `backend/017` ← 3.4
-- [ ] 5.6 SDK Python `backend/018` ← 1.4
-- [ ] 5.7 SDK JS `backend/019` ← 1.4
+- [ ] 5.1 LLM `backend/014` ← 1.3
+- [ ] 5.2 수정 제안 `backend/015` ← 5.1
+- [ ] 5.3 채널별 규칙 `backend/016` ← 1.3
+- [ ] 5.4 Webhook `backend/017` ← 1.4
+- [ ] 5.5 리포트 `backend/018` ← 3.4
+- [ ] 5.6 SDK Python `backend/019` ← 1.4
+- [ ] 5.7 SDK JS `backend/020` ← 1.4
+- [ ] 5.8 법령 크롤러 `backend/021` ← 5.1
+- [ ] 5.9 크롤러 → 규칙 자동 변환 (LLM 파이프라인) `backend/022` ← 5.8,5.1
 
 ## Phase 6: 추가 (지속)
 - [ ] 6.1 백오피스 `frontend/010`
