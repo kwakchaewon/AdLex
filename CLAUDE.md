@@ -117,5 +117,5 @@ subject: 50자 이내. 명령형. 마침표 없음.
 ## 작업 프로세스
 1. 태스크 파일(adlex-docs/tasks/)을 읽고 OUTPUT 경로에 파일 생성
 2. 코드 생성 후 빌드/테스트 명령 안내 (PowerShell: .\gradlew.bat)
-3. 성공 시 커밋 메시지 제안 (Conventional Commits)
+3. 코드 생성 완료 후 /auto-commit 스킬을 자동 실행하여 커밋
 4. plan.md의 해당 태스크를 [x] 완료로 업데이트
