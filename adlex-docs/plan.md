@@ -2,8 +2,8 @@
 > AI-powered API for checking marketing and advertising compliance
 
 ## 진행 요약
-- 전체: 5/44 (11%)
-- 현재: Phase 1 진행중 (5/7)
+- 전체: 6/44 (13%)
+- 현재: Phase 1 진행중 (6/7)
 
 ---
 
@@ -13,7 +13,7 @@
 - [x] 1.3 규칙 엔진 `backend/003` ← 1.2
 - [x] 1.4 POST /v1/check `backend/004` ← 1.3
 - [x] 1.5 Batch + Rules API `backend/005` ← 1.4
-- [ ] 1.6 인증 + Rate Limit `backend/006` ← 1.2
+- [x] 1.6 인증 + Rate Limit `backend/006` ← 1.2
 - [ ] 1.7 테스트 `backend/007` ← 1.4,1.6
 
 ## Phase 2: 배포 (2주)

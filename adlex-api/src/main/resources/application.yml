@@ -35,6 +35,10 @@ springdoc:
     tags-sorter: alpha
     operations-sorter: method
 
+adlex:
+  jwt:
+    secret: ${ADLEX_JWT_SECRET:adlex-local-dev-secret-key-minimum-256-bits-long-padding}
+
 management:
   endpoints:
     web:
