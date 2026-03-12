@@ -428,7 +428,6 @@ onMounted(loadRules)
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&family=Syne:wght@600;700&display=swap');
 
 .rule-manage {
   padding: 2rem 2.5rem;

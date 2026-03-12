@@ -58,7 +58,6 @@ function handleLogout() {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600&family=DM+Sans:wght@400;500;600&display=swap');
 
 .app-header {
   display: flex;

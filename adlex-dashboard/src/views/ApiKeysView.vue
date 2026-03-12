@@ -232,7 +232,6 @@ onMounted(load)
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
 .keys-page { font-family: 'DM Sans', sans-serif; max-width: 1000px; }
 

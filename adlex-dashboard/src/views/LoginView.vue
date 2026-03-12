@@ -215,7 +215,6 @@ async function handleRegister() {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap');
 
 .auth-root {
   display: flex;

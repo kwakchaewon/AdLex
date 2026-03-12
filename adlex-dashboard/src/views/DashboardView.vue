@@ -207,7 +207,6 @@ onMounted(load)
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@500&display=swap');
 
 .dashboard {
   font-family: 'DM Sans', sans-serif;

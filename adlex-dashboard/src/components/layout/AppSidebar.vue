@@ -87,7 +87,6 @@ const navItems = [
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap');
 
 .sidebar {
   position: fixed;

@@ -301,8 +301,6 @@ onMounted(() => { loadStatus(); loadProfile() })
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
-
 .settings {
   font-family: 'DM Sans', sans-serif;
   padding: 1.5rem 2rem;
@@ -478,7 +476,7 @@ onMounted(() => { loadStatus(); loadProfile() })
 .plan-header { display: flex; flex-direction: column; gap: .2rem; margin-top: .25rem; }
 .plan-name { font-family: 'Syne', sans-serif; font-size: .85rem; font-weight: 700; letter-spacing: .02em; }
 .plan-price { display: flex; align-items: baseline; gap: .25rem; }
-.price-num { font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 700; color: #0d1530; }
+.price-num { font-family: 'DM Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: #0d1530; font-variant-numeric: tabular-nums; }
 .price-period { font-size: .72rem; color: #9ca3af; }
 
 .plan-quota {

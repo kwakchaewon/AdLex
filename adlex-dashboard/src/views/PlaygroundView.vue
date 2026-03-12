@@ -184,7 +184,6 @@ function fmtDate(iso: string) {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
 .playground { font-family: 'DM Sans', sans-serif; padding: 1.5rem 2rem; background: #f8f9fc; min-height: calc(100vh - 60px); }
 .pg-grid { display: grid; grid-template-columns: 420px 1fr; gap: 1.25rem; max-width: 1140px; margin: 0 auto; align-items: start; }
